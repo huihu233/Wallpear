@@ -17,6 +17,7 @@ export function compareTimestamp(timestamp) {
 	}
 }
 
+
 export function gotoHome() {
 	uni.showModal({
 		title: "提示",
