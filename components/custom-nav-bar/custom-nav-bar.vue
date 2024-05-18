@@ -8,7 +8,7 @@
 				<view class="title">
 					{{ navBarTitle }}
 				</view>
-				<view class="search" v-if="isShowSearch">
+				<view class="search" v-if="isShowSearch" @click="onSearch">
 					<uni-icons class="icon" type="search" color="#888" size="18"></uni-icons>
 					<text class="text">搜索</text>
 				</view>
@@ -45,6 +45,12 @@
 	let statusBarHeight = getStatusBarHeight()
 	let titleBarHeight = getTitleBarHeight()
 	let navBarHeight = getNavBarHeight()
+
+	function onSearch() {
+		uni.navigateTo({
+			url: "/pages/search/search"
+		})
+	}
 </script>
 
 <style lang="scss" scoped>

@@ -67,7 +67,30 @@ export function apiDetailWall(data = {}) {
 
 // 用户个人信息
 export function apiGetUserInfo() {
-	return uni.request({
-		url: ""
+	return request({
+		url: "/userInfo"
+	})
+}
+
+// 获取用户下载列表
+export function apiGetuserWallList(data = {}) {
+	return request({
+		url: '/userWallList',
+		data
+	})
+}
+
+// 获取公告详情
+export function apiGetNoticeDetail(data = {}) {
+	return request({
+		url: '/wallNewsDetail',
+		data
+	})
+}
+
+export function apiSearchData(data = {}) {
+	return request({
+		url: '/searchWall',
+		data
 	})
 }

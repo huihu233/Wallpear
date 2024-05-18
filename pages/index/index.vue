@@ -5,7 +5,15 @@
 			<swiper :indicator-dots="true" indicator-color="rgba(255,255,255,0.5)" :autoplay="true" :interval="3000"
 				indicator-active-color="#fff" circular :duration="1000">
 				<swiper-item v-for="item in bannerList" :key="item._id">
-					<image :src="item.picurl" mode="aspectFill"></image>
+
+					<navigator v-if="item.target == 'miniProgram'" :url='item.url' target="miniProgram"
+						:app-id="item.appid" class="link">
+						<image :src="item.picurl" mode="aspectFill"></image>
+					</navigator>
+					<navigator v-else :url='`/pages/classlist/classlist?${item.url}`' class="link">
+						<image :src="item.picurl" mode="aspectFill"></image>
+					</navigator>
+
 				</swiper-item>
 			</swiper>
 		</view>
@@ -17,7 +25,7 @@
 			</view>
 			<view class="center">
 				<swiper :autoplay="true" vertical :interval="3000" circular :duration="500">
-					<swiper-item v-for="item in noticeList" :key="item._id" @click="goNotice">
+					<swiper-item v-for="item in noticeList" :key="item._id" @click="goNotice(item._id)">
 						<view class="item-text">{{item.title}}</view>
 					</swiper-item>
 				</swiper>
@@ -134,9 +142,9 @@
 		uni.setStorageSync("storgClassList", randomList.value)
 	}
 
-	const goNotice = () => {
+	const goNotice = (id) => {
 		uni.navigateTo({
-			url: "/pages/notice/notice"
+			url: "/pages/notice/detail?id=" + id
 		})
 	}
 
@@ -176,11 +184,18 @@
 					height: 100%;
 					padding: 0 30rpx;
 
-					image {
+					.link {
 						width: 100%;
 						height: 100%;
-						border-radius: 10rpx;
+
+						image {
+							width: 100%;
+							height: 100%;
+							border-radius: 10rpx;
+						}
 					}
+
+
 				}
 			}
 		}

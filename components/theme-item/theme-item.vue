@@ -5,7 +5,7 @@
 			<view class="mask">
 				{{ data.name }}
 			</view>
-			<view class="top">
+			<view class="top" v-if="compareTimestamp(data.updateTime)">
 				{{ compareTimestamp(data.updateTime) }}前更新
 			</view>
 		</navigator>

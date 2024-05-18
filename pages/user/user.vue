@@ -1,15 +1,15 @@
 <template>
-	<view class="userLayout pageBg">
+	<view class="userLayout pageBg" v-if="userInfo.data">
 		<custom-nav-bar navBarTitle="我的"></custom-nav-bar>
 		<view class="userInfo">
 			<view class="acatar">
 				<image src="../../static/images/xxmLogo.png" mode="aspectFill"></image>
 			</view>
 			<view class="ip">
-				192.168.189.100
+				{{ userInfo.data.IP }}
 			</view>
 			<view class="address">
-				来自于: 山东
+				来自于: {{ userInfo.data.address.province || userInfo.data.address.country }}
 			</view>
 		</view>
 
@@ -25,13 +25,13 @@
 					<view class="right">
 						<view class="right">
 							<view class="text">
-								333
+								{{ userInfo.data.downloadSize }}
 							</view>
 							<uni-icons type="right" size="15" color="#aaa"></uni-icons>
 						</view>
 					</view>
 				</view>
-				<view class="row">
+				<view class="row" @click="skipMark">
 					<view class="left">
 						<uni-icons type="star-filled" size="20" color="#28b389"></uni-icons>
 						<view class="text">
@@ -41,7 +41,7 @@
 					<view class="right">
 						<view class="right">
 							<view class="text">
-								333
+								{{ userInfo.data.scoreSize }}
 							</view>
 							<uni-icons type="right" size="15" color="#aaa"></uni-icons>
 						</view>
@@ -57,7 +57,7 @@
 					<view class="right">
 						<view class="right">
 							<view class="text">
-								333
+
 							</view>
 							<uni-icons type="right" size="15" color="#aaa"></uni-icons>
 						</view>
@@ -74,7 +74,7 @@
 		</view>
 		<view class="section">
 			<view class="list">
-				<view class="row">
+				<view class="row" @click="Renewal">
 					<view class="left">
 						<uni-icons type="notification-filled" size="20"></uni-icons>
 						<view class="text">
@@ -84,13 +84,13 @@
 					<view class="right">
 						<view class="right">
 							<view class="text">
-								333
+
 							</view>
 							<uni-icons type="right" size="15" color="#aaa"></uni-icons>
 						</view>
 					</view>
 				</view>
-				<view class="row">
+				<view @click="goProblem" class="row">
 					<view class="left">
 						<uni-icons type="flag-filled" size="20"></uni-icons>
 						<view class="text">
@@ -100,7 +100,7 @@
 					<view class="right">
 						<view class="right">
 							<view class="text">
-								333
+
 							</view>
 							<uni-icons type="right" size="15" color="#aaa"></uni-icons>
 						</view>
@@ -108,6 +108,10 @@
 				</view>
 			</view>
 		</view>
+	</view>
+	<!-- 加载窗口 -->
+	<view v-else>
+		<uni-load-more status="loading"></uni-load-more>
 	</view>
 </template>
 
@@ -127,11 +131,7 @@
 
 	onLoad(async () => {
 		userInfo.value = await apiGetUserInfo()
-
-		console.log(userInfo.value);
 	})
-
-
 
 	function clickContact() {
 		uni.makePhoneCall({
@@ -141,9 +141,30 @@
 
 	function goClassList() {
 		uni.navigateTo({
-			url: "/pages/classlist/classlist"
+			url: "/pages/classlist/classlist?name=我的下载&type=download"
 		})
 	}
+
+	function skipMark() {
+		uni.navigateTo({
+			url: "/pages/classlist/classlist?name=我的评分&type=score"
+		})
+	}
+
+	// 常见问题
+	function goProblem() {
+		uni.navigateTo({
+			url: "/pages/notice/detail?id=6536358ce0ec19c8d67fbe82&name=常见问题"
+		})
+	}
+
+	// 获取最新
+	function Renewal() {
+		uni.navigateTo({
+			url: "/pages/notice/detail?id=653507c6466d417a3718e94b&name=获取最新"
+		})
+	}
+
 
 	// 分享给好友
 	onShareAppMessage(() => {

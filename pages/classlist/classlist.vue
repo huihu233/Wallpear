@@ -27,7 +27,8 @@
 	} from '@dcloudio/uni-app'
 
 	import {
-		apiGetClassList
+		apiGetClassList,
+		apiGetuserWallList
 	} from '@/api/apis.js'
 
 	import {
@@ -45,18 +46,16 @@
 
 	let pageName
 
-
 	onLoad((option) => {
 		let {
-			id,
-			name
+			id = null,
+				name = null,
+				type = null
 		} = option
 
-		if (!id) {
-			gotoHome()
-		}
+		if (type) queryparams.type = type
+		if (id) queryparams.classid = id
 
-		queryparams.classid = id
 		pageName = name
 
 		uni.setNavigationBarTitle({
@@ -81,7 +80,11 @@
 
 
 	async function getClassList() {
-		const res = await apiGetClassList(queryparams)
+		let res
+		if (queryparams.classid) res = await apiGetClassList(queryparams)
+
+		if (queryparams.type) res = await apiGetuserWallList(queryparams)
+
 		if (res.data.length < queryparams.pageSize) {
 			noData.value = true
 		}

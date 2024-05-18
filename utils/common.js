@@ -28,7 +28,6 @@ export function gotoHome() {
 					url: "/pages/index/index"
 				})
 			}
-
 			return;
 		}
 	})

@@ -25,6 +25,11 @@ const _sfc_main = {
     let statusBarHeight = utils_system.getStatusBarHeight();
     let titleBarHeight = utils_system.getTitleBarHeight();
     let navBarHeight = utils_system.getNavBarHeight();
+    function onSearch() {
+      common_vendor.index.navigateTo({
+        url: "/pages/search/search"
+      });
+    }
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: common_vendor.unref(statusBarHeight) + "px",
@@ -35,10 +40,11 @@ const _sfc_main = {
           type: "search",
           color: "#888",
           size: "18"
-        })
+        }),
+        e: common_vendor.o(onSearch)
       } : {}, {
-        e: common_vendor.unref(titleBarHeight) + "px",
-        f: common_vendor.unref(navBarHeight) + "px"
+        f: common_vendor.unref(titleBarHeight) + "px",
+        g: common_vendor.unref(navBarHeight) + "px"
       });
     };
   }

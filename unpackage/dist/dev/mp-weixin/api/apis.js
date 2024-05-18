@@ -1,5 +1,4 @@
 "use strict";
-const common_vendor = require("../common/vendor.js");
 const utils_request = require("../utils/request.js");
 function apiGetBanner() {
   return utils_request.request({
@@ -49,8 +48,26 @@ function apiDetailWall(data = {}) {
   });
 }
 function apiGetUserInfo() {
-  return common_vendor.index.request({
-    url: ""
+  return utils_request.request({
+    url: "/userInfo"
+  });
+}
+function apiGetuserWallList(data = {}) {
+  return utils_request.request({
+    url: "/userWallList",
+    data
+  });
+}
+function apiGetNoticeDetail(data = {}) {
+  return utils_request.request({
+    url: "/wallNewsDetail",
+    data
+  });
+}
+function apiSearchData(data = {}) {
+  return utils_request.request({
+    url: "/searchWall",
+    data
   });
 }
 exports.apiDetailWall = apiDetailWall;
@@ -58,7 +75,10 @@ exports.apiGetBanner = apiGetBanner;
 exports.apiGetClassList = apiGetClassList;
 exports.apiGetClassif = apiGetClassif;
 exports.apiGetDayRandom = apiGetDayRandom;
+exports.apiGetNoticeDetail = apiGetNoticeDetail;
 exports.apiGetNoticeList = apiGetNoticeList;
 exports.apiGetUserInfo = apiGetUserInfo;
+exports.apiGetuserWallList = apiGetuserWallList;
+exports.apiSearchData = apiSearchData;
 exports.apiSetScore = apiSetScore;
 exports.apiWriteDownload = apiWriteDownload;

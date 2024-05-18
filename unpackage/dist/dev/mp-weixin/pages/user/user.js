@@ -4,12 +4,14 @@ const api_apis = require("../../api/apis.js");
 if (!Array) {
   const _easycom_custom_nav_bar2 = common_vendor.resolveComponent("custom-nav-bar");
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
-  (_easycom_custom_nav_bar2 + _easycom_uni_icons2)();
+  const _easycom_uni_load_more2 = common_vendor.resolveComponent("uni-load-more");
+  (_easycom_custom_nav_bar2 + _easycom_uni_icons2 + _easycom_uni_load_more2)();
 }
 const _easycom_custom_nav_bar = () => "../../components/custom-nav-bar/custom-nav-bar.js";
 const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
+const _easycom_uni_load_more = () => "../../uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js";
 if (!Math) {
-  (_easycom_custom_nav_bar + _easycom_uni_icons)();
+  (_easycom_custom_nav_bar + _easycom_uni_icons + _easycom_uni_load_more)();
 }
 const _sfc_main = {
   __name: "user",
@@ -17,11 +19,25 @@ const _sfc_main = {
     let userInfo = common_vendor.ref({});
     common_vendor.onLoad(async () => {
       userInfo.value = await api_apis.apiGetUserInfo();
-      console.log(userInfo.value);
     });
     function goClassList() {
       common_vendor.index.navigateTo({
-        url: "/pages/classlist/classlist"
+        url: "/pages/classlist/classlist?name=我的下载&type=download"
+      });
+    }
+    function skipMark() {
+      common_vendor.index.navigateTo({
+        url: "/pages/classlist/classlist?name=我的评分&type=score"
+      });
+    }
+    function goProblem() {
+      common_vendor.index.navigateTo({
+        url: "/pages/notice/detail?id=6536358ce0ec19c8d67fbe82&name=常见问题"
+      });
+    }
+    function Renewal() {
+      common_vendor.index.navigateTo({
+        url: "/pages/notice/detail?id=653507c6466d417a3718e94b&name=获取最新"
       });
     }
     common_vendor.onShareAppMessage(() => {
@@ -31,60 +47,73 @@ const _sfc_main = {
       };
     });
     return (_ctx, _cache) => {
-      return {
-        a: common_vendor.p({
+      return common_vendor.e({
+        a: common_vendor.unref(userInfo).data
+      }, common_vendor.unref(userInfo).data ? {
+        b: common_vendor.p({
           navBarTitle: "我的"
         }),
-        b: common_vendor.p({
+        c: common_vendor.t(common_vendor.unref(userInfo).data.IP),
+        d: common_vendor.t(common_vendor.unref(userInfo).data.address.province || common_vendor.unref(userInfo).data.address.country),
+        e: common_vendor.p({
           type: "download-filled",
           size: "20",
           color: "#28b389"
         }),
-        c: common_vendor.p({
+        f: common_vendor.t(common_vendor.unref(userInfo).data.downloadSize),
+        g: common_vendor.p({
           type: "right",
           size: "15",
           color: "#aaa"
         }),
-        d: common_vendor.o(goClassList),
-        e: common_vendor.p({
+        h: common_vendor.o(goClassList),
+        i: common_vendor.p({
           type: "star-filled",
           size: "20",
           color: "#28b389"
         }),
-        f: common_vendor.p({
+        j: common_vendor.t(common_vendor.unref(userInfo).data.scoreSize),
+        k: common_vendor.p({
           type: "right",
           size: "15",
           color: "#aaa"
         }),
-        g: common_vendor.p({
+        l: common_vendor.o(skipMark),
+        m: common_vendor.p({
           type: "chatboxes-filled",
           size: "20",
           color: "#28b389"
         }),
-        h: common_vendor.p({
+        n: common_vendor.p({
           type: "right",
           size: "15",
           color: "#aaa"
         }),
-        i: common_vendor.p({
+        o: common_vendor.p({
           type: "notification-filled",
           size: "20"
         }),
-        j: common_vendor.p({
+        p: common_vendor.p({
           type: "right",
           size: "15",
           color: "#aaa"
         }),
-        k: common_vendor.p({
+        q: common_vendor.o(Renewal),
+        r: common_vendor.p({
           type: "flag-filled",
           size: "20"
         }),
-        l: common_vendor.p({
+        s: common_vendor.p({
           type: "right",
           size: "15",
           color: "#aaa"
+        }),
+        t: common_vendor.o(goProblem)
+      } : {
+        v: common_vendor.p({
+          status: "loading"
         })
-      };
+      });
     };
   }
 };

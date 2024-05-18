@@ -34,14 +34,17 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: !__props.isShow
-      }, !__props.isShow ? {
+      }, !__props.isShow ? common_vendor.e({
         b: __props.data.picurl,
         c: common_vendor.t(__props.data.name),
-        d: common_vendor.t(common_vendor.unref(utils_common.compareTimestamp)(__props.data.updateTime)),
-        e: "/pages/classlist/classlist?id=" + __props.data._id + "&name=" + __props.data.name
-      } : {
-        f: common_assets._imports_0,
-        g: common_vendor.p({
+        d: common_vendor.unref(utils_common.compareTimestamp)(__props.data.updateTime)
+      }, common_vendor.unref(utils_common.compareTimestamp)(__props.data.updateTime) ? {
+        e: common_vendor.t(common_vendor.unref(utils_common.compareTimestamp)(__props.data.updateTime))
+      } : {}, {
+        f: "/pages/classlist/classlist?id=" + __props.data._id + "&name=" + __props.data.name
+      }) : {
+        g: common_assets._imports_0,
+        h: common_vendor.p({
           type: "more-filled",
           size: "30",
           color: "#fff"

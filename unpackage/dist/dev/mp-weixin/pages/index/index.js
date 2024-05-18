@@ -48,9 +48,9 @@ const _sfc_main = {
       });
       common_vendor.index.setStorageSync("storgClassList", randomList.value);
     };
-    const goNotice = () => {
+    const goNotice = (id) => {
       common_vendor.index.navigateTo({
-        url: "/pages/notice/notice"
+        url: "/pages/notice/detail?id=" + id
       });
     };
     common_vendor.onShareAppMessage(() => {
@@ -74,10 +74,18 @@ const _sfc_main = {
           isShowSearch: true
         }),
         b: common_vendor.f(bannerList.value, (item, k0, i0) => {
-          return {
-            a: item.picurl,
-            b: item._id
-          };
+          return common_vendor.e({
+            a: item.target == "miniProgram"
+          }, item.target == "miniProgram" ? {
+            b: item.picurl,
+            c: item.url,
+            d: item.appid
+          } : {
+            e: item.picurl,
+            f: `/pages/classlist/classlist?${item.url}`
+          }, {
+            g: item._id
+          });
         }),
         c: common_vendor.p({
           type: "sound-filled",
@@ -87,7 +95,7 @@ const _sfc_main = {
           return {
             a: common_vendor.t(item.title),
             b: item._id,
-            c: common_vendor.o(goNotice, item._id)
+            c: common_vendor.o(($event) => goNotice(item._id), item._id)
           };
         }),
         e: common_vendor.p({

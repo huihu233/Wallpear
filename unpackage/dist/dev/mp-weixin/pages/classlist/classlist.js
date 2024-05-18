@@ -1,7 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const api_apis = require("../../api/apis.js");
-const utils_common = require("../../utils/common.js");
 if (!Array) {
   const _easycom_uni_load_more2 = common_vendor.resolveComponent("uni-load-more");
   _easycom_uni_load_more2();
@@ -22,13 +21,14 @@ const _sfc_main = {
     let pageName;
     common_vendor.onLoad((option) => {
       let {
-        id,
-        name
+        id = null,
+        name = null,
+        type = null
       } = option;
-      if (!id) {
-        utils_common.gotoHome();
-      }
-      queryparams.classid = id;
+      if (type)
+        queryparams.type = type;
+      if (id)
+        queryparams.classid = id;
       pageName = name;
       common_vendor.index.setNavigationBarTitle({
         title: name
@@ -45,7 +45,11 @@ const _sfc_main = {
       common_vendor.index.removeStorageSync("storgClassList");
     });
     async function getClassList() {
-      const res = await api_apis.apiGetClassList(queryparams);
+      let res;
+      if (queryparams.classid)
+        res = await api_apis.apiGetClassList(queryparams);
+      if (queryparams.type)
+        res = await api_apis.apiGetuserWallList(queryparams);
       if (res.data.length < queryparams.pageSize) {
         noData.value = true;
       }
