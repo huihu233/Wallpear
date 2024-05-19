@@ -26,6 +26,8 @@ B站地址：https://www.bilibili.com/video/BV1Yg4y127Fp/?vd_source=35ee1d212f0c
 
 Gitee:  https://gitee.com/qingnian8/univue3 
 
+在线体验地址: https://static-mp-cfd89d00-52e6-4499-ba9a-72e97b4e2579.next.bspapp.com/xxmwall#/
+
 ## 使用
 
 ​	由于接口地址不是本人的，所以需要通过微信扫码看一段广告来获取 key 

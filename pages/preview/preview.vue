@@ -591,7 +591,7 @@
 								font-size: 22rpx;
 								padding: 0 30rpx;
 								border-radius: 40rpx;
-								line-hegiht: 40rpx;
+								line-height: 40rpx;
 								margin: 0 10rpx 10rpx 0;
 
 							}

@@ -165,7 +165,7 @@
   font-size: 22rpx;
   padding: 0 30rpx;
   border-radius: 40rpx;
-  line-hegiht: 40rpx;
+  line-height: 40rpx;
   margin: 0 10rpx 10rpx 0;
 }
 .preview .infoPopup scroll-view .content .row .class.data-v-2dad6c07 {

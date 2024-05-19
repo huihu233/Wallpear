@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "分类",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "custom-nav-bar": "../../components/custom-nav-bar/custom-nav-bar",
+    "theme-item": "../../components/theme-item/theme-item"
+  }
+}

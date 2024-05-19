@@ -4,15 +4,16 @@ const api_apis = require("../../api/apis.js");
 if (!Array) {
   const _easycom_uni_search_bar2 = common_vendor.resolveComponent("uni-search-bar");
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
-  const _component_uv_empty = common_vendor.resolveComponent("uv-empty");
+  const _easycom_uv_empty2 = common_vendor.resolveComponent("uv-empty");
   const _easycom_uni_load_more2 = common_vendor.resolveComponent("uni-load-more");
-  (_easycom_uni_search_bar2 + _easycom_uni_icons2 + _component_uv_empty + _easycom_uni_load_more2)();
+  (_easycom_uni_search_bar2 + _easycom_uni_icons2 + _easycom_uv_empty2 + _easycom_uni_load_more2)();
 }
 const _easycom_uni_search_bar = () => "../../uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.js";
 const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
+const _easycom_uv_empty = () => "../../uni_modules/uv-empty/components/uv-empty/uv-empty.js";
 const _easycom_uni_load_more = () => "../../uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js";
 if (!Math) {
-  (_easycom_uni_search_bar + _easycom_uni_icons + _easycom_uni_load_more)();
+  (_easycom_uni_search_bar + _easycom_uni_icons + _easycom_uv_empty + _easycom_uni_load_more)();
 }
 const _sfc_main = {
   __name: "search",
